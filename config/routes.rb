@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post "/create_dish", :controller => "dishes", :action => "create"
 
   # READ
-  get "/dishes", :controller => "bookmarks", :action => "list"
+  get "/dishes", :controller => "dishes", :action => "index"
   get "/dishes/:id", :controller => "dishes", :action => "show"
 
   # UPDATE

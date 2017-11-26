@@ -16,12 +16,7 @@ class BookmarksController < ApplicationController
     render("bookmarks/index.html.erb")
   end
 
-  def list
-    @q = current_user.bookmarks.ransack(params[:q])
-      @bookmarks = @q.result(:distinct => true).includes(:user, :venue, :dish).page(params[:page]).per(10)
-
-    render("bookmarks/list.html.erb")
-  end
+  
 
   def show
     @bookmark = Bookmark.find(params[:id])
