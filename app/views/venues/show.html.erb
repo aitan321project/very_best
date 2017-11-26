@@ -46,39 +46,33 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Bookmarks
+        Dishes you loved here
       </li>
 
-      <% @venue.bookmarks.each do |bookmark| %>
+      <% @venue.bookmarks.where(:user_id => current_user.id).each do |bookmark| %>
         <li class="list-group-item">
-          <a href="/bookmarks/<%= bookmark.id %>">
-            <%= bookmark.notes %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/bookmarks/<%= bookmark.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
+          <a href="/dishes/<%= bookmark.dish.id %>"> 
+            <%= bookmark.dish.name %>
+          </a> 
+          <small class="text-muted pull-right">
+            <%= time_ago_in_words(bookmark.created_at)%>
+            <a href="/bookmarks/<%=bookmark.id%>/edit">
+              <i class="fa fa-fw fa-edit"></i>
             </a>
-            <a href="/bookmarks/<%= bookmark.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
+            <a href="/delete_bookmark/<%=bookmark.id%>">
+              <i class="fa fa-fw fa-trash-o"></i>
             </a>
-            <a href="/delete_bookmark/<%= bookmark.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
+          </small>
         </li>
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_bookmark" method="post">
+        <form action="/create_bookmark" method="post" class="form-inline">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for dish_id -->
       <div class="form-group">
-        <label for="dish_id" class="control-label">
-          Dish
-        </label>
-
         <%= select_tag(:dish_id, options_from_collection_for_select(Dish.all, :id, :name), :class => "form-control") %>
       </div>
 
@@ -88,18 +82,10 @@
       <!-- Label and input for user_id -->
       <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <!-- Label and input for notes -->
-      <div class="form-group">
-        <label for="notes" class="control-label">
-          Notes
-        </label>
-
-        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"></textarea>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Bookmark
+      <button class="btn btn-primary btn">
+        <i class="fa fa-heart"></i>
       </button>
+      <small class="text-muted pull-right">right now</small>
     </form>
       </li>
     </ul>
