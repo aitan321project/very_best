@@ -1,0 +1,37 @@
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th>
+            The very best...
+          </th>
+
+          <th>
+            is at...
+          </th>
+
+          <th>
+
+          </th>
+        </tr>
+        
+        <% @bookmarks.each do |bookmark| %>
+       
+        <tr>
+          <td>
+            <a href="/dishes/<%= bookmark.dish.id %>"><%= bookmark.dish.name %>
+            </a>
+          </td>
+
+          <td>
+              <a href="/venues/<%= bookmark.venue.id %>"><%= bookmark.venue.name %>
+              </a>
+
+          </td>
+
+          <td class="text-right">
+            <span class="label label-primary">
+              <%= bookmark.dish.cuisine.name %>
+            </span>
+          </td>
+          <% end %>
