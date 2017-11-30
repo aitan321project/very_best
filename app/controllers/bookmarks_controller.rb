@@ -16,6 +16,8 @@ class BookmarksController < ApplicationController
     render("bookmarks/index.html.erb")
   end
 
+  
+
   def show
     @bookmark = Bookmark.find(params[:id])
 
