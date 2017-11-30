@@ -35,14 +35,13 @@
         <div class="panel panel-default">
           <div class="panel-heading"><h4 class="pnael-title">Places you've bookmarked</h4></div>
           <div id="location_map" style="height: 480px;"></div>
-        
-    
+ 
     <div class="row">
       <div class="col-md-12">
         <table class="table table-striped table-hover">
           <tr></tr>
           <ul class="list-group">
-            <% @venues.each do |venue| %>
+            <% @bookmarkedvenue.each do |venue| %>
           
               <li class="list-group-item">
                 <a href="/venues/<%= venue.id %>"><%= venue.name %></a>
@@ -51,7 +50,6 @@
             <% end %>
           </ul>
         </table>
-        <%= paginate @venues, theme: 'twitter-bootstrap-4' %>
       </div>
     </div>
     
