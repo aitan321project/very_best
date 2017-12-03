@@ -41,7 +41,7 @@
         <table class="table table-striped table-hover">
           <tr></tr>
           <ul class="list-group">
-            <% @bookmarkedvenue.each do |venue| %>
+            <% @q.result.each do |venue| %>
           
               <li class="list-group-item">
                 <a href="/venues/<%= venue.id %>"><%= venue.name %></a>
