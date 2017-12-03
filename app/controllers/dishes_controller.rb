@@ -10,6 +10,10 @@ class DishesController < ApplicationController
     @bookmark = Bookmark.new
     @dish = Dish.find(params[:id])
 
+##    <% @bookmark=Bookmark.all.find { |x| x.user_id == current_user.id && x.dish_id == @dish.id } %>
+    @bookmarkvenues=Bookmark.where(:user_id => current_user.id, :dish_id => params[:id])
+    
+
     render("dishes/show.html.erb")
   end
 
